@@ -259,20 +259,20 @@ export default function Chat () {
               >
                 <Profile />
               </Drawer>
-               <form onSubmit={onSearchName} action="">
+              <form onSubmit={onSearchName} action="">
                 <div className="d-flex align-items-center">
-                    <div className="flex-grow-1">
-                      <input
-                        onChange={(e) => setSearchName(e.target.value)}
-                        type="text"
-                        className="form-control my-3"
-                        placeholder="Search..."
-                        // value={searchName}
-                      />
-                    </div>
-                  <img src={plus} style={{ marginLeft: '15px' }} alt="" />
+                  <div className="flex-grow-1">
+                    <input
+                      onChange={(e) => setSearchName(e.target.value)}
+                      type="text"
+                      className="form-control my-3"
+                      placeholder="Search..."
+                      // value={searchName}
+                    />
                   </div>
-                 </form>
+                  <img src={plus} style={{ marginLeft: '15px' }} alt="" />
+                </div>
+              </form>
             </div>
             {listUser.isLoading
               ? (
@@ -335,126 +335,146 @@ export default function Chat () {
             <hr className="d-block d-lg-none mt-1 mb-0" />
           </div>
           <div className="col-12 col-lg-7 col-xl-9 main-chat">
-            <div className="py-2 px-4 d-none d-lg-block header-chat">
-              <div className="d-flex align-items-center py-1">
-                <div className="position-relative">
-                  {activeReceiver.photo
-                    ? (
-                    <img
-                      src={`${process.env.REACT_APP_API_URL}/${activeReceiver.photo}`}
-                      style={{ marginRight: '10px', borderRadius: '10px' }}
-                      width="40"
-                      height="40"
-                    />
-                      )
-                    : (
-                    <img
-                      src={`${process.env.REACT_APP_API_URL}/user.png`}
-                      style={{ marginRight: '10px', borderRadius: '10px' }}
-                      width="40"
-                      height="40"
-                    />
-                      )}
-                </div>
-                <div className="flex-grow-1 pl-3">
-                  <strong>{activeReceiver.username}</strong>
-                  <div style={{ color: '#7E98DF' }}>Online</div>
-                </div>
-                <div>
-                  <button className="btn btn-light border btn-lg px-3">
-                    <img src={profileMenu} width="24" height="24" alt="" />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="position-relative">
-              <div className="chat-messages p-4">
-                {listChat.map((items, index) => (
-                  <div key={index}>
-                    {items.sender === login.username
+            {activeReceiver.username
+              ? (
+              <div className="py-2 px-4 d-none d-lg-block header-chat">
+                <div className="d-flex align-items-center py-1">
+                  <div className="position-relative">
+                    {activeReceiver.photo
                       ? (
-                      <div className="chat-message-right pb-4">
-                        <div>
-                          {login.photo
-                            ? (
-                            <img
-                              src={`${process.env.REACT_APP_API_URL}/${login.photo}`}
-                              className="rounded-circle mr-1"
-                              width="40"
-                              height="40"
-                            />
-                              )
-                            : (
-                            <img
-                              src={`${process.env.REACT_APP_API_URL}/user.png`}
-                              className="rounded-circle mr-1"
-                              width="40"
-                              height="40"
-                            />
-                              )}
-
-                          <div className="text-muted small text-nowrap mt-2">
-                            2:33 am
-                          </div>
-                        </div>
-                        <div
-                          style={{
-                            backgroundColor: 'white',
-                            color: 'black',
-                            borderRadius: '30px',
-                            paddingTop: '20px',
-                            paddingLeft: '10px',
-                            paddingRight: '10px'
-                          }}
-                          className="flex-shrink-1 mr-3"
-                        >
-                          {items.chat}
-                        </div>
-                      </div>
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}/${activeReceiver.photo}`}
+                        style={{ marginRight: '10px', borderRadius: '10px' }}
+                        width="40"
+                        height="40"
+                      />
                         )
                       : (
-                      <div className="chat-message-left pb-4">
-                        <div>
-                          {activeReceiver.photo
-                            ? (
-                            <img
-                              src={`${process.env.REACT_APP_API_URL}/${activeReceiver.photo}`}
-                              className="rounded-circle mr-1"
-                              width="40"
-                              height="40"
-                            />
-                              )
-                            : (
-                            <img
-                              src={`${process.env.REACT_APP_API_URL}/user.png`}
-                              className="rounded-circle mr-1"
-                              width="40"
-                              height="40"
-                            />
-                              )}
-
-                          <div className="text-muted small text-nowrap mt-2">
-                            2:34 am
-                          </div>
-                        </div>
-                        <div
-                          style={{
-                            backgroundColor: '#7E98DF',
-                            color: 'white',
-                            borderRadius: '30px',
-                            paddingTop: '20px',
-                            paddingLeft: '10px',
-                            paddingRight: '10px'
-                          }}
-                          className="flex-shrink-1 ml-3"
-                        >
-                          {items.chat}
-                        </div>
-                      </div>
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}/user.png`}
+                        style={{ marginRight: '10px', borderRadius: '10px' }}
+                        width="40"
+                        height="40"
+                      />
                         )}
                   </div>
-                ))}
+                  <div className="flex-grow-1 pl-3">
+                    <strong>{activeReceiver.username}</strong>
+                    <div style={{ color: '#7E98DF' }}>Online</div>
+                  </div>
+                  <div>
+                    <button className="btn btn-light border btn-lg px-3">
+                      <img src={profileMenu} width="24" height="24" alt="" />
+                    </button>
+                  </div>
+                </div>
               </div>
+                )
+              : (
+              <div className="py-2 px-4 d-none d-lg-block header-chat">
+                <div
+                  style={{ height: '55px' }}
+                  className="d-flex align-items-center py-1"
+                ></div>
+              </div>
+                )}
+
+            <div className="position-relative">
+              {activeReceiver.username
+                ? (
+                <div className="chat-messages p-4">
+                  {listChat.map((items, index) => (
+                    <div key={index}>
+                      {items.sender === login.username
+                        ? (
+                        <div className="chat-message-right pb-4">
+                          <div>
+                            {login.photo
+                              ? (
+                              <img
+                                src={`${process.env.REACT_APP_API_URL}/${login.photo}`}
+                                className="rounded-circle mr-1"
+                                width="40"
+                                height="40"
+                              />
+                                )
+                              : (
+                              <img
+                                src={`${process.env.REACT_APP_API_URL}/user.png`}
+                                className="rounded-circle mr-1"
+                                width="40"
+                                height="40"
+                              />
+                                )}
+
+                            <div className="text-muted small text-nowrap mt-2">
+                              2:33 am
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              backgroundColor: 'white',
+                              color: 'black',
+                              borderRadius: '30px',
+                              paddingTop: '20px',
+                              paddingLeft: '10px',
+                              paddingRight: '10px'
+                            }}
+                            className="flex-shrink-1 mr-3"
+                          >
+                            {items.chat}
+                          </div>
+                        </div>
+                          )
+                        : (
+                        <div className="chat-message-left pb-4">
+                          <div>
+                            {activeReceiver.photo
+                              ? (
+                              <img
+                                src={`${process.env.REACT_APP_API_URL}/${activeReceiver.photo}`}
+                                className="rounded-circle mr-1"
+                                width="40"
+                                height="40"
+                              />
+                                )
+                              : (
+                              <img
+                                src={`${process.env.REACT_APP_API_URL}/user.png`}
+                                className="rounded-circle mr-1"
+                                width="40"
+                                height="40"
+                              />
+                                )}
+
+                            <div className="text-muted small text-nowrap mt-2">
+                              2:34 am
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              backgroundColor: '#7E98DF',
+                              color: 'white',
+                              borderRadius: '30px',
+                              paddingTop: '20px',
+                              paddingLeft: '10px',
+                              paddingRight: '10px'
+                            }}
+                            className="flex-shrink-1 ml-3"
+                          >
+                            {items.chat}
+                          </div>
+                        </div>
+                          )}
+                    </div>
+                  ))}
+                </div>
+                  )
+                : (
+                  <div className="chat-messages p-4 d-flex justify-content-center align-items-center">
+                    <label style={{ color: '#848484', fontSize: '20px' }} htmlFor="">Please select a chat to start messaging</label>
+                  </div>
+                  )}
             </div>
             <form onSubmit={onSubmitMessage} action="">
               <div
