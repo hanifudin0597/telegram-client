@@ -1,0 +1,36 @@
+.hanif{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.main-chat{
+    background-color: #FAFAFA;
+    /* background-color: pink; */
+}
+
+.header-chat{
+    background-color: white;
+}
+
+/* chat */
+.hanif .chat-messages {
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    overflow-y: scroll
+}
+
+.hanif .chat-message-left,
+.hanif .chat-message-right {
+    display: flex;
+    flex-shrink: 0
+}
+
+.hanif .chat-message-left {
+    margin-right: auto
+}
+
+.hanif .chat-message-right {
+    flex-direction: row-reverse;
+    margin-left: auto
+}
