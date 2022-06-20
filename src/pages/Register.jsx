@@ -15,19 +15,33 @@ export default function Register () {
   const navigate = useNavigate()
   const onLogin = (e) => {
     e.preventDefault()
-    register(form)
-      .then((result) => {
-        if (result.code === 200) {
-          Swal.fire({
-            title: 'Success',
-            text: `${result.message}`,
-            icon: 'success'
-          })
-          return navigate('/')
-        }
-      }).catch((err) => {
-        console.log(err)
+    if (form.email === '' || form.password === '' || form.username === '') {
+      Swal.fire({
+        title: 'error',
+        text: 'input must be filled',
+        icon: 'error'
       })
+    } else {
+      register(form)
+        .then((result) => {
+          if (result.code === 200) {
+            Swal.fire({
+              title: 'Success',
+              text: `${result.message}`,
+              icon: 'success'
+            })
+            return navigate('/')
+          }
+        }).catch((err) => {
+          if (err.response.data.code === 500) {
+            Swal.fire({
+              title: 'Error',
+              text: `${err.response.data.error}`,
+              icon: 'error'
+            })
+          }
+        })
+    }
   }
   return (
     <div
@@ -43,7 +57,7 @@ export default function Register () {
       <div className="card" style={{ width: 'auto', borderRadius: '5%' }}>
         <div className="card-body">
           <div className={styleAuth.tittle}>
-            <Link to="/login">
+            <Link to="/">
               <img className={styleAuth.goBack} src={goBack} alt="" />
             </Link>
             <h5 className={'card-title'}>Register</h5>

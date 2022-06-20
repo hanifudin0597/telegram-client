@@ -10,23 +10,38 @@ export default function Login () {
     email: '',
     password: ''
   })
+
   const navigate = useNavigate()
   const onSubmitted = (e) => {
     e.preventDefault()
-    login(form)
-      .then((result) => {
-        if (result.code === 200) {
-          Swal.fire({
-            title: 'Success',
-            text: `${result.message}`,
-            icon: 'success'
-          })
-          return navigate('/chat')
-        }
+    if (form.email === '' || form.password === '') {
+      Swal.fire({
+        title: 'error',
+        text: 'input must be filled',
+        icon: 'error'
       })
-      .catch((err) => {
-        console.log(err)
-      })
+    } else {
+      login(form)
+        .then((result) => {
+          if (result.code === 200) {
+            Swal.fire({
+              title: 'Success',
+              text: `${result.message}`,
+              icon: 'success'
+            })
+            return navigate('/chat')
+          }
+        })
+        .catch((err) => {
+          if (err.response.data.code === 401) {
+            Swal.fire({
+              title: 'error',
+              text: `${err.response.data.error}`,
+              icon: 'error'
+            })
+          }
+        })
+    }
   }
   return (
     <div
@@ -47,7 +62,7 @@ export default function Login () {
           <h6 className={`card-subtitle ${styleAuth.header}`}>
             Hi, Welcome back!
           </h6>
-           <form onClick={(e) => { onSubmitted(e) }}>
+           <form onSubmit={(e) => { onSubmitted(e) }}>
           <div
             className="d-flex flex-column"
             style={{ marginLeft: '50px', marginRight: '50px' }}
@@ -91,14 +106,14 @@ export default function Login () {
               <img className={styleAuth.iconGoogle} src={iconGoogle} alt="" />
               Login
             </button>
-            <label className={styleAuth.labelDonthaveAcoount} htmlFor="">
+          </div>
+          </form>
+           <label style={{ marginLeft: '25%' }} className={styleAuth.labelDonthaveAcoount} htmlFor="">
               Don’t have an account?
               <Link to="/register" className={styleAuth.linkSignUp}>
                 Sign Up
               </Link>
             </label>
-          </div>
-          </form>
         </div>
       </div>
     </div>

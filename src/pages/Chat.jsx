@@ -21,18 +21,20 @@ import Bookmarks from '../assets/icons/bookmark.svg'
 import inviteFriend from '../assets/icons/inviteFriend.svg'
 import FAQ from '../assets/icons/FAQ.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { getListUser } from '../redux/action/user'
+import { getListUser, detailProfilePeople } from '../redux/action/user'
 import Drawer from 'react-modern-drawer'
 import 'react-modern-drawer/dist/index.css'
 import Profile from '../components/Profile'
-import { useSearchParams, useNavigate } from 'react-router-dom'
+import DetailProfile from '../components/detailProfile'
+import { useNavigate } from 'react-router-dom'
 import logout from '../assets/icons/logout.svg'
+import Swal from 'sweetalert2'
 
 export default function Chat () {
-  const [queryParams] = useSearchParams()
   const navigate = useNavigate()
   const [socketio, setSocketio] = useState(null)
   const [listChat, setListChat] = useState([])
+  const [searchName, setSearchName] = useState('')
   useEffect(() => {
     const socket = io(process.env.REACT_APP_API_URL)
     socket.on('send-message-response', (response) => {
@@ -73,6 +75,7 @@ export default function Chat () {
   const dispatch = useDispatch()
   const [dropdownOpen, setOpen] = useState(false)
   const [isOpenProfile, setIsOpenProfile] = useState(false)
+  const [isOpenProfile1, setIsOpenProfile1] = useState(false)
 
   const listUser = useSelector((state) => {
     return state.listUser
@@ -82,8 +85,8 @@ export default function Chat () {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
     setLogin(user)
-    dispatch(getListUser(dispatch, searchName || ''))
-  }, [dispatch])
+    dispatch(getListUser(dispatch, searchName))
+  }, [dispatch, searchName])
 
   const toggleDrawer = () => {
     setIsOpenProfile((prevState) => !prevState)
@@ -103,17 +106,43 @@ export default function Chat () {
   }
 
   // search Name
-  const resultSearch = queryParams.get('search')
-  const [searchName, setSearchName] = useState(resultSearch)
-  const onSearchName = (e) => {
-    e.preventDefault()
-    dispatch(getListUser(dispatch, searchName))
-    return navigate(`/chat?search=${searchName}`)
-  }
-
   const onLogout = () => {
     localStorage.clear()
     return navigate('/')
+  }
+
+  const toggleDrawer1 = () => {
+    const receiver = JSON.parse(localStorage.getItem('receiver'))
+    dispatch(detailProfilePeople(receiver.id))
+    setIsOpenProfile1((prevState) => !prevState)
+  }
+
+  // delete chat
+  const onDeleteMessage = (items) => {
+    console.log(items)
+    Swal.fire({
+      title: 'Are you sure to delete this message?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data = {
+          sender: items.sender,
+          receiver: items.receiver,
+          chatId: items.id
+        }
+        socketio.emit('delete-message', data)
+        Swal.fire(
+          'Deleted!',
+          'Your message has been deleted.',
+          'success'
+        )
+      }
+    })
   }
 
   return (
@@ -259,7 +288,7 @@ export default function Chat () {
               >
                 <Profile />
               </Drawer>
-              <form onSubmit={onSearchName} action="">
+              <form action="">
                 <div className="d-flex align-items-center">
                   <div className="flex-grow-1">
                     <input
@@ -363,10 +392,21 @@ export default function Chat () {
                     <div style={{ color: '#7E98DF' }}>Online</div>
                   </div>
                   <div>
-                    <button className="btn btn-light border btn-lg px-3">
+                      <button
+                        onClick={toggleDrawer1}
+                        className="btn btn-light border btn-lg px-3">
                       <img src={profileMenu} width="24" height="24" alt="" />
                     </button>
                   </div>
+                   <Drawer
+                    open={isOpenProfile1}
+                    onClose={toggleDrawer1}
+                    direction="right"
+                    className="bla bla bla"
+                    style={{ width: '335px' }}
+                  >
+                    <DetailProfile />
+                  </Drawer>
                 </div>
               </div>
                 )
@@ -382,11 +422,12 @@ export default function Chat () {
             <div className="position-relative">
               {activeReceiver.username
                 ? (
-                <div className="chat-messages p-4">
+                <div style={{ overflow: 'auto ' }} className="chat-messages p-4">
                   {listChat.map((items, index) => (
                     <div key={index}>
                       {items.sender === login.username
                         ? (
+                          // balo chat right
                         <div className="chat-message-right pb-4">
                           <div>
                             {login.photo
@@ -415,15 +456,25 @@ export default function Chat () {
                             style={{
                               backgroundColor: 'white',
                               color: 'black',
-                              borderRadius: '30px',
+                              borderTopLeftRadius: '50px',
+                              borderTopRightRadius: '50px',
+                              borderBottomRightRadius: '8px',
+                              borderBottomLeftRadius: '50px',
                               paddingTop: '20px',
-                              paddingLeft: '10px',
-                              paddingRight: '10px'
+                              paddingLeft: '30px',
+                              paddingRight: '30px'
                             }}
                             className="flex-shrink-1 mr-3"
                           >
-                            {items.chat}
+                              {items.chat}
                           </div>
+                          <span
+                              className="text-danger pointer mt-3"
+                              onClick={() => onDeleteMessage(items)}
+                              style={{ marginTop: '20px', marginLeft: '30px' }}
+                            >
+                              Delete
+                          </span>
                         </div>
                           )
                         : (
@@ -450,20 +501,31 @@ export default function Chat () {
                             <div className="text-muted small text-nowrap mt-2">
                               2:34 am
                             </div>
-                          </div>
+                            </div>
+                            {/* balon chat left */}
                           <div
                             style={{
                               backgroundColor: '#7E98DF',
                               color: 'white',
-                              borderRadius: '30px',
+                              borderTopLeftRadius: '50px',
+                              borderTopRightRadius: '50px',
+                              borderBottomRightRadius: '50px',
+                              borderBottomLeftRadius: '8px',
                               paddingTop: '20px',
-                              paddingLeft: '10px',
-                              paddingRight: '10px'
+                              paddingLeft: '30px',
+                              paddingRight: '30px'
                             }}
                             className="flex-shrink-1 ml-3"
                           >
                             {items.chat}
-                          </div>
+                            </div>
+                          <span
+                              className="text-danger pointer mt-3"
+                              onClick={() => onDeleteMessage(items)}
+                              style={{ marginTop: '20px', marginLeft: '30px' }}
+                            >
+                              Delete
+                          </span>
                         </div>
                           )}
                     </div>
@@ -494,6 +556,7 @@ export default function Chat () {
                   type="text"
                   className="form-control"
                   placeholder="Type your message"
+                  required
                 />
                 <img src={plus} alt="" />
                 <img
