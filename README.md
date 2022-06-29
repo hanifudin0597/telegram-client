@@ -1,7 +1,7 @@
 <br />
 <p align="center">
 <div align="center">
-  <img height="150" src="/screenshots/logo.PNG"/>
+  <img height="150" src="/screenshots/logo.png"/>
 </div>
   <h3 align="center">Telegram Apps</h3>
   <p align="center">
