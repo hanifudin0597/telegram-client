@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+<br />
+<p align="center">
+<div align="center">
+  <img height="150" src="/screenshots/logo.PNG"/>
+</div>
+  <h3 align="center">Telegram Apps</h3>
+  <p align="center">
+    <a href="https://github.com/hanifudin0597/telegram-client"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://telegram-pijar.netlify.app/">View Demo</a>
+    ·
+    <a href="https://github.com/hanifudin0597/telegram-client/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/hanifudin0597/telegram-client/issues">Request Feature</a>
+  </p>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-### `npm start`
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Setup .env](#setup-env)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [Related Project](#related-project)
+- [Contact](#contact)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Telegram website application is an online chat application. This application is built using Express Js and React Js. The features in this application are login, register, chat with registered users, search for users who want to chat, view profiles, update own profiles, and view other people's profiles.
 
-### `npm run build`
+### Built With
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Redux](https://redux.js.org/)
+- [Bootstrap Css](https://getbootstrap.com/)
+- [React js](https://reactjs.org/)
+- and other
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- GETTING STARTED -->
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This is an example of how to list things you need to use the software and how to install them.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* [nodejs](https://nodejs.org/en/download/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Clone This Front End Repo
+```
+git clone https://github.com/hanifudin0597/telegram-client.git
+```
+- Go To Folder Repo
+```
+cd telegram-client
+```
+- Install Module
+```
+npm install
+```
+- <a href="#setup-env">Setup .env</a>
+- Type ` npm run dev` To Start Website
+- Type ` npm run production` To Start Production
 
-## Learn More
+### Setup .env
+Create .env file in your root project folder.
+```
+REACT_APP_BACKEN_URL = [BACKEND_URL]
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- ROADMAP -->
+## Screenshots
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<div align="center">
+  <img width="350px" src="/screenshots/chat.PNG" alt="1" />
+  <img width="350px" src="/screenshots/login.PNG" alt="2" />
+  <img width="350px" src="/screenshots/menu.PNG" alt="3" /> 
+  <img width="350px" src="/screenshots/myprofile.PNG" alt="4" />
+  <img width="350px" src="/screenshots/otherprofile.PNG" alt="5" />
+  <img width="350px" src="/screenshots/register.PNG" alt="6" /> 
+</div>
 
-### Code Splitting
+<!-- CONTRIBUTING -->
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### Analyzing the Bundle Size
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Related Project
+:rocket: [`Backend Telegram client`](https://github.com/hanifudin0597/api-recipe-resto)
 
-### Advanced Configuration
+:rocket: [`Frontend Telegram client`](https://github.com/hanifudin0597/telegram-client)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+:rocket: [`Demo Telegram client`](https://telegram-pijar.netlify.app/)
 
-### Deployment
+<!-- CONTACT -->
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+My Email : hanifudin0597@gmail.com
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Project Link: [https://github.com/hanifudin0597/telegram-client](https://github.com/hanifudin0597/telegram-client)
