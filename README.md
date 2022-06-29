@@ -106,7 +106,7 @@ Contributions are what make the open source community such an amazing place to b
 
 
 ## Related Project
-:rocket: [`Backend Telegram client`](https://github.com/hanifudin0597/api-recipe-resto)
+:rocket: [`Backend Telegram client`](https://github.com/hanifudin0597/telegram-api)
 
 :rocket: [`Frontend Telegram client`](https://github.com/hanifudin0597/telegram-client)
 
