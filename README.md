@@ -83,15 +83,34 @@ REACT_APP_BACKEN_URL = [BACKEND_URL]
 <!-- ROADMAP -->
 ## Screenshots
 
-<div align="center">
-  <img width="350px" src="/screenshots/chat.PNG" alt="1" />
-  <img width="350px" src="/screenshots/currentchat.PNG" alt="2" />
-  <img width="350px" src="/screenshots/login.PNG" alt="3" /> 
-  <img width="350px" src="/screenshots/menu.PNG" alt="4" />
-  <img width="350px" src="/screenshots/myprofile.PNG" alt="5" />
-  <img width="350px" src="/screenshots/otherprofile.PNG" alt="6" /> 
-   <img width="350px" src="/screenshots/register.PNG" alt="6" /> 
-</div>
+<table>
+ <tr>
+    <td><img width="350px" src="/screenshots/chat.PNG" alt="1" /></td>
+    <td> <img width="350px" src="/screenshots/login.PNG" alt="2" /></td>
+  </tr>
+   <tr>
+    <td>Chat</td>
+    <td>Login</td>
+  </tr>
+
+  <tr>
+    <td><img width="350px" src="/screenshots/menu.PNG" alt="3" /> </td>
+     <td><img width="350px" src="/screenshots/myprofile.PNG" alt="4" /></td>
+  </tr>
+   <tr>
+    <td>Menu</td>
+     <td>My Profile</td>
+  </tr>
+  
+  <tr>
+    <td><img width="350px" src="/screenshots/otherprofile.PNG" alt="5" /></td>
+    <td>  <img width="350px" src="/screenshots/register.PNG" alt="6" /> </td>
+  </tr>
+  <tr>
+    <td>Profile Orang Lain</td>
+    <td>Register</td>
+  </tr>
+</table>
 
 <!-- CONTRIBUTING -->
 ## Contributing
